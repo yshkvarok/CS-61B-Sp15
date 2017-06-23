@@ -20,6 +20,8 @@ public class NBody {
 		for (int i = 0; i < planets.length; i++)
 			planets[i].draw();
 
+		StdAudio.play("audio/2001.mid");
+
 		for (int i = 0; i <= T; i += dt)
 		{
 			for (int j = 0; j < planets.length; j++)
