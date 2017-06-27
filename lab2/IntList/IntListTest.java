@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+  import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class IntListTest {
@@ -37,8 +37,32 @@ public class IntListTest {
      *  Anything can happen to A. 
      */
 
-    //TODO:  Create testSquareListRecursive()
-    //TODO:  Create testDcatenate and testCatenate
+    @Test
+    public void testSquareListRecursive() {
+        IntList L = IntList.list(1, 2, 3);
+        IntList newL = IntList.squareListRecursive(L);
+        assertEquals(IntList.list(1, 4, 9), newL);
+        assertEquals(IntList.list(1, 2, 3), L);
+    }
+
+    @Test
+    public void testDcatenate() {
+        IntList L = IntList.list(1, 2, 3);
+        IntList M = IntList.list(4, 5);
+        L = IntList.dcatenate(L, M);
+        assertEquals(IntList.list(4, 5), M);
+        assertEquals(IntList.list(1, 2, 3, 4, 5), L);
+    }
+
+    @Test
+    public void testCatenate() {
+        IntList L = IntList.list(1, 2, 3);
+        IntList M = IntList.list(4, 5);
+        IntList N = IntList.catenate(L, M);
+        assertEquals(IntList.list(1, 2, 3), L);
+        assertEquals(IntList.list(4, 5), M);
+        assertEquals(IntList.list(1, 2, 3, 4, 5), N);
+    }
 
     /* Run the unit tests in this file. */
     public static void main(String... args) {
