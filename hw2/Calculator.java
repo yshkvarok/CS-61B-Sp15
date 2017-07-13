@@ -12,8 +12,14 @@ public class Calculator {
      * @return the sum of x and y
      **/
     public int add(int x, int y) {
-        // YOUR CODE HERE
-        return -1;
+        int hld;
+
+        while (y != 0) {
+            hld = x & y;
+            x = x ^ y;
+            y = hld << 1;
+        }
+        return x;
     }
 
     /**
@@ -25,8 +31,20 @@ public class Calculator {
      * @return the product of x and y
      **/
     public int multiply(int x, int y) {
-        // YOUR CODE HERE
-        return -1;
+        int a = x;
+        int b = y;
+        int result = 0;
+
+        while (b != 0)
+        {
+            if ((b & 1) != 0)
+            {
+                result = result + a;
+            }
+            a <<= 1;
+            b >>>= 1;
+        }
+        return result;
     }
 
     /**
