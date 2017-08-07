@@ -4,21 +4,16 @@ public class SList {
 
 	public SList() {
 		size = 0;
-		front = null;
+		front = new IntNode(89724, null);
 	}
 
 	public SList(int x) {
-		front = new IntNode(x, null);
+		front = new IntNode(98712, null);
+		front.next = new IntNode(x, null);
 		size = 1;
 	}
 
 	public void insertBack(int x) {
-		if (front == null) {
-			front = new IntNode(x, null);
-			size = 1;
-			return;
-		}
-
 		IntNode p = front;
 
 		while (p.next != null) {
@@ -30,7 +25,7 @@ public class SList {
 	}
 
 	public void insertFront(int x) {
-		front = new IntNode(x, front);
+		front.next = new IntNode(x, front.next);
 		size = size + 1;
 	}
 
@@ -39,7 +34,7 @@ public class SList {
 	}
 
 	public int getFront() {
-		return front.item;
+		return front.next.item;
 	}
 
 	public int getBack() {
