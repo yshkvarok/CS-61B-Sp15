@@ -25,6 +25,7 @@ public class SList {
 	}
 
 	public void insertFront(int x) {
+		System.out.println("SList insertFront() was called.\n");
 		front.next = new IntNode(x, front.next);
 		size = size + 1;
 	}

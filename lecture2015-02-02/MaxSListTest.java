@@ -40,6 +40,15 @@ public class MaxSListTest {
 		assertEquals(8, L.getBack());
 	}
 
+	@Test
+	public void testMax() {
+		MaxSList L = new MaxSList();
+		L.insertBack(50);
+		L.insertBack(49);
+		L.insertBack(51);
+		assertEquals(51, L.max());
+	}
+
 	public static void main(String[] args) {
 		jh61b.junit.textui.runClasses(MaxSListTest.class);
 	}
