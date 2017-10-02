@@ -10,7 +10,6 @@ public class Board {
 		Board chBoard = new Board(false);
 
 		for (turnCounter = 0; true; turnCounter++) {
-			System.out.println(turnCounter);
 			chBoard.takeTurn();
 		}
 
@@ -72,14 +71,16 @@ public class Board {
 	}
 
 	void select(int x, int y) {
-		if (currentSelected == null) {
+		if (currentSelected == null || pieceAt(x, y) != null) {
 			// select piece
 			currentSelected = pieceAt(x, y);
+			drawPieces();
 			System.out.println("Selected\n");
 		}
 		else {
 			currentSelected.move(x, y);
 			currentSelected = null;
+			drawPieces();
 			System.out.println("Moved\n");
 		}
 	}
@@ -112,13 +113,17 @@ public class Board {
 
 	// My own methods below:
 
-	private static void drawBoard(int N) {
+	private void drawBoard(int N) {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if ((i + j) % 2 == 0) StdDrawPlus.setPenColor(StdDrawPlus.GRAY);
                 else                  StdDrawPlus.setPenColor(StdDrawPlus.RED);
                 StdDrawPlus.filledSquare(i + .5, j + .5, .5);
             }
+        }
+        if (currentSelected != null) {
+        	StdDrawPlus.setPenColor(StdDrawPlus.WHITE);
+        	StdDrawPlus.filledSquare(currentSelected.xPos + .5, currentSelected.yPos + .5, .5);
         }
     }
 
@@ -204,6 +209,7 @@ public class Board {
 
     	if (turnCounter % 2 == 0) {
     		// Fire Turn
+    		System.out.println("Turn " + turnCounter + ": Fire");
     		while (true) {
     			if (StdDrawPlus.mousePressed()) {
     				System.out.println("Mouse pressed");
@@ -221,6 +227,7 @@ public class Board {
     	}
     	else {
     		// Water turn
+    		System.out.println("Turn " + turnCounter + ": Water");
     		while (true) {
     			if (StdDrawPlus.mousePressed()) {
     				System.out.println("Mouse pressed");
