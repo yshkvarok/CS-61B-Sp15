@@ -69,15 +69,21 @@ public class Piece {
 
 		if (pieceType == "bomb" && hasCaptured) {
 			if (board.pieceAt(xPos + 1, yPos + 1) != null && board.pieceAt(xPos + 1, yPos + 1).pieceType != "shield") 	
-				{board.remove(xPos + 1, yPos + 1);}
+				board.remove(xPos + 1, yPos + 1);
 			if (board.pieceAt(xPos - 1, yPos + 1) != null && board.pieceAt(xPos - 1, yPos + 1).pieceType != "shield")	
-				{board.remove(xPos - 1, yPos + 1);}
+				board.remove(xPos - 1, yPos + 1);
 			if (board.pieceAt(xPos - 1, yPos - 1) != null && board.pieceAt(xPos - 1, yPos - 1).pieceType != "shield")	
-				{board.remove(xPos - 1, yPos - 1);}
+				board.remove(xPos - 1, yPos - 1);
 			if (board.pieceAt(xPos + 1, yPos - 1) != null && board.pieceAt(xPos + 1, yPos - 1).pieceType != "shield")	
-				{board.remove(xPos + 1, yPos - 1);}
+				board.remove(xPos + 1, yPos - 1);
 			board.remove(xPos, yPos);
+			hasCaptured = false;
+			return;
 		}
+
+		if (isTeamFire && yPos == 7) kinged = true;
+		else if (!isTeamFire && yPos == 0) kinged = true;
+
 		hasCaptured = false;
 	}
 
