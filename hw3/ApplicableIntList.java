@@ -12,29 +12,42 @@ public class ApplicableIntList{
 
     /** A list with head HEAD0 and tail TAIL0. */
     public ApplicableIntList(int head0, ApplicableIntList tail0) {
-        // REPLACE THIS LINE WITH YOUR SOLUTION
+        head = head0;
+        tail = tail0;
     }
 
     /** A list with null tail, and head = 0. */
     public ApplicableIntList() {
-        // REPLACE THIS LINE WITH YOUR SOLUTION
+        head = 0;
+        tail = null;
     }
 
     /** Inserts int i into its correct location, doesn't handle cycles. */
     public void insert(int i) {
-        // REPLACE THIS LINE WITH YOUR SOLUTION
+        if (head == 0 && tail == null) head = i;
+        else {
+        	ApplicableIntList ptr = this;
+        	while (ptr.tail != null && i > ptr.tail.head) {
+        		ptr = ptr.tail;
+        	}
+        	ptr.tail = new ApplicableIntList(i, ptr.tail);
+        }
     }
 
     /** Returns the i-th int in this list.
      *  The first element, which is in location 0, is the 0th element.
      *  Assume i takes on the values [0, length of list - 1]. */
     public int get(int i) {
-        // REPLACE THIS LINE WITH YOUR SOLUTION
+    	ApplicableIntList ptr = this;
+        for (int j = 0; j < i; j++) {
+        	ptr = ptr.tail;
+        }
+        return ptr.head;
     }
 
     /** Applies the function f to every item in this list. */
     public void apply(IntUnaryFunction f) {
-        // REPLACE THIS LINE WITH YOUR SOLUTION
+        
     }
 
     /** Returns NULL if no cycle exists, else returns cycle location. */
@@ -101,5 +114,19 @@ public class ApplicableIntList{
         }
         out.format(")");
         return out.toString();
+    }
+
+    public static void main(String[] args) {
+    	ApplicableIntList lst = new ApplicableIntList();
+    	System.out.println(lst.toString());
+
+    	lst.insert(1);
+    	lst.insert(9);
+    	lst.insert(3);
+    	lst.insert(5);
+    	lst.insert(4);
+    	lst.insert(10);
+    	System.out.println(lst.toString());
+    	System.out.println(lst.get(6));
     }
 }
