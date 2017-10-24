@@ -23,7 +23,7 @@ public class GuitarHeroLite {
               // play the sample on standard audio
               // note: this is just playing the double value YOUR GuitarString
               //       class is generating. 
-              StdAudio.play(sample);
+              synthesizer.StdAudio.play(sample);
   
               // advance the simulation of each guitar string by one step   
               stringA.tic();
