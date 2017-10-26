@@ -19,10 +19,18 @@ public class Plip extends Creature {
     /** blue color. */
     private int b;
 
+    /** energy lost */
+    private final double energyLost = 0.15;
+    /** energy gained */
+    private final double energyGained = 0.2;
+
+    /** fraction of energy to retain when replicating. */
+    private double halfEnergy = 0.5;
+
     /** creates plip with energy equal to E. */
     public Plip(double e) {
         super("plip");
-        r = 0;
+        r = 99;
         g = 0;
         b = 0;
         energy = e;
@@ -41,7 +49,12 @@ public class Plip extends Creature {
      *  that you get this exactly correct.
      */
     public Color color() {
-        g = 63;
+        r = 99;
+        b = 76;
+
+        int temp = (int) (energy / 2) * 192;
+        g = temp + 63;
+
         return color(r, g, b);
     }
 
@@ -54,11 +67,16 @@ public class Plip extends Creature {
      *  private static final variable. This is not required for this lab.
      */
     public void move() {
+        energy -= energyLost;
     }
 
 
     /** Plips gain 0.2 energy when staying due to photosynthesis. */
     public void stay() {
+        if (energy + energyGained > 2) {
+            energy = 2;
+        }
+        else energy += energyGained;
     }
 
     /** Plips and their offspring each get 50% of the energy, with none
@@ -66,7 +84,8 @@ public class Plip extends Creature {
      *  Plip.
      */
     public Plip replicate() {
-        return this;
+        energy *= halfEnergy;
+        return new Plip(energy);
     }
 
     /** Plips take exactly the following actions based on NEIGHBORS:
@@ -80,6 +99,27 @@ public class Plip extends Creature {
      *  for an example to follow.
      */
     public Action chooseAction(Map<Direction, Occupant> neighbors) {
+        List<Direction> empties = getNeighborsOfType(neighbors, "empty");
+        
+        if (empties.size() == 0) {
+            return new Action(Action.ActionType.STAY);
+        }
+
+        if (empties.size() > 0) {
+            if (energy > 1) {
+                return new Action(Action.ActionType.REPLICATE, empties.get(0));
+            }
+        }
+
+        List<Direction> cloruses = getNeighborsOfType(neighbors, "clorus");
+        if (cloruses.size() > 0) {
+            if (empties.size() > 0) {
+                if (Math.random() > .5) {
+                    double temp = Math.random() * empties.size();
+                    return new Action(Action.ActionType.MOVE, empties.get((int) Math.floor(temp)));
+                }
+            }
+        }
         return new Action(Action.ActionType.STAY);
     }
 }
