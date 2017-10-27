@@ -9,10 +9,10 @@ public class AListPrinterLauncher {
         L.insertBack(10);
         L.insertBack(-3);
         
-        AList.ListPrinter lp = L.new ListPrinter();
-        lp.printNext(); // 5
-        lp.printNext(); // 10
-        lp.printNext(); // -3 
-        lp.printNext();  
+        AList.AListIterator ali = L.new AListIterator();
+        System.out.println(ali.printNext()); // 5
+        System.out.println(ali.printNext()); // 10
+        System.out.println(ali.printNext()); // -3 
+        System.out.println(ali.printNext());  
     }
 } 

@@ -22,12 +22,12 @@ public class Dog {
     }
 
     public void listenToVoice() {
-        vih.encourage();
+        vih.speak();
     }
 
-    private class VoiceInHead {
-        public void encourage() {
-            System.out.println(name +", you are a beautiful, blessed, and wonderful dog. You can achieve your desires.");
+    public class VoiceInHead {
+        public void speak() {
+            System.out.println(name + ", hello.");
         }
     }
 } 

@@ -5,45 +5,26 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Iterator;
 
-public class AList extends AbstractXList implements Iterable<Integer> {
+public class AList extends AbstractXList {
     private int[] items;
     private int size; 
 
     public class ListPrinter {
-        private int counter = 0;
+        public int i = 0;
 
         public void printNext() {
-            if (counter >= size) {
-                throw new NoSuchElementException();
-            }
-            System.out.println(items[counter]);
-            counter += 1;
-
+            System.out.println(items[i]);
+            i += 1;
         }
     }
 
-    public Iterator<Integer> iterator() {
-        return new AListIterator();
-    }
+    public class AListIterator {
+        public int i = 0;
 
-    private class AListIterator implements Iterator<Integer>{
-        private int counter = 0;
-
-        public boolean hasNext() {
-            return (counter < size);
-        }
-
-        public Integer next() {
-            if (!hasNext()) {
-                return null;
-            }
-            int itemToReturn = items[counter];
-            counter += 1;
-            return itemToReturn;
-        }
-
-        public void remove() {
-            throw new UnsupportedOperationException();
+        public Integer printNext() {
+            Integer returnItem = items[i];
+            i += 1;
+            return returnItem;
         }
     }
 
