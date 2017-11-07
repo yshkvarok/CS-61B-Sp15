@@ -8,11 +8,10 @@ public class AListIteratorLauncher {
         L.insertBack(5);
         L.insertBack(10);
         L.insertBack(-3);
-        AList.AListIterator ali =
-            L.new AListIterator();
-        System.out.println(ali.next()); // 5
-        System.out.println(ali.next()); // 10
-        System.out.println(ali.next()); // -3    
-        System.out.println(ali.next()); // null  
+        AList.AListIterator ali = L.new AListIterator();
+
+        while (ali.hasNext()) {
+            System.out.println(ali.next());
+        }
     }
 }
