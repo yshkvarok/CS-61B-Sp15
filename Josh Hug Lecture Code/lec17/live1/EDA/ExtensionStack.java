@@ -1,20 +1,20 @@
-/** 
- *  @author Josh Hug
- */
 import java.util.LinkedList;
 
-/* Extension! */
 public class ExtensionStack<Zerp> extends LinkedList<Zerp>{
-    // LinkedList has the following handy operations:
-    // add(int index, E element) puts elmeent E in position index
-    // remove(int index): removes item and returns at position
+	public void put(Zerp x) {
+		this.add(0, x);
+	}
 
-    public void put(Zerp x) {
-        this.add(0, x);
-    }
+	public Zerp pop() {
+		/* Invariant: Top element is in position 0. */
+		return this.remove(0);
+	}
 
-    public Zerp pop() {
-        /* Invariant: Top item is always in position 0. */
-        return this.remove(0);
-    }
-} 
+	public static void main(String[] args) {
+		ExtensionStack<Integer> list = new ExtensionStack<Integer>();
+		list.put(5);
+		list.put(10);
+		list.pop();
+		list.pop();
+	}
+}

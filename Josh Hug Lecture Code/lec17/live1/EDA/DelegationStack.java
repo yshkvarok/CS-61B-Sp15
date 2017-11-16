@@ -1,25 +1,18 @@
-/** 
- *  @author Josh Hug
- */
 import java.util.LinkedList;
 
-/* Delegation! */
-public class DelegationStack<Zerp> {
-    LinkedList<Zerp> secretList;
+public class DelegationStack<Zerp>{
+	LinkedList<Zerp> secretList;
 
-    // LinkedList has the following handy operations:
-    // add(int index, E element) puts elmeent E in position index
-    // remove(int index): removes item and returns at position
-    public Stack() {
-        secretList = new LinkedList<Zerp>(); 
-    }
+	public DelegationStack() {
+		secretList = new LinkedList<Zerp>();
+	}
 
-    public void put(Zerp x) {
-        secretList.add(0, x);
-    }
+	public void put(Zerp x) {
+		secretList.add(0, x);
+	}
 
-    public Zerp pop() {
-        /* Invariant: Top item is always in position 0. */
-        return secretList.remove(0);
-    }
-} 
+	public Zerp pop() {
+		/* Invariant: Top element is in position 0. */
+		return secretList.remove(0);
+	}
+}

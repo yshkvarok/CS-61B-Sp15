@@ -19,6 +19,6 @@ public class ChattyTripler extends Tripler {
 
     public static void main(String[] args) {
         ChattyTripler ct = new ChattyTripler();
-        ct.triple(5, 2);
+        ct.triple(2, 10);
     }
 }
